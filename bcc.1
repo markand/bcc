@@ -1,0 +1,98 @@
+.\"
+.\" Copyright (c) 2020 David Demelier <markand@malikania.fr>
+.\"
+.\" Permission to use, copy, modify, and/or distribute this software for any
+.\" purpose with or without fee is hereby granted, provided that the above
+.\" copyright notice and this permission notice appear in all copies.
+.\"
+.\" THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+.\" WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+.\" MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+.\" ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+.\" WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+.\" ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+.\" OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+.\"
+.Dd October 21, 2020
+.Dt BCC 1
+.Os
+.\" NAME
+.Sh NAME
+.Nm bcc
+.Nd binary to C/C++ arrays converter
+.\" SYNOPSIS
+.Sh SYNOPSIS
+.Nm bcc
+.Op Fl 0csu
+.Op Fl I Ar tab-indent
+.Op Fl i Ar space-indent
+.Ar filename
+.Ar variable
+.\" DESCRIPTION
+.Sh DESCRIPTION
+The
+.Nm
+utility converts the
+.Ar input
+file into a C or C++ array named
+.Ar variable
+that can be embedded as-is in the source code. A special
+.Ar -
+value can be passed as input which will read standard input instead.
+.Pp
+The
+.Ar variable
+can contain any character but only ones that are allowed in the C standard will
+be kept, other will be replaced with a
+.Dq _ .
+Also, the extension (by finding the first .) is removed as well. This can be
+handy when generating a lots of file based on their names during a build
+process.
+.Pp
+Note: you must still not start a variable name with digits.
+.Pp
+The following options are available:
+.Bl -tag -width indent-xxxxxxxx
+.It Fl 0
+Terminate the generated array with a trailing NUL.
+.It Fl c
+Generates a
+.Em const
+array.
+.It Fl s
+Generate a
+.Em static
+array.
+.It Fl u
+Use an
+.Em unsigned
+char rather than
+.Em signed .
+.It Fl I Ar tab-indent
+.Ar tab-indent
+count as leading indents.
+.It Fl i Ar space-indent
+.Ar space-indent
+count as leading indents.
+.El
+.\" EXAMPLES
+.Sh EXAMPLES
+Create a static, const, unsigned array from an image.
+.Bd -literal -offset indent
+bcc -scu image.png image > image.h
+.Ed
+.Pp
+Create a modifiable array from a text file as a NUL terminated string.
+.Bd -literal -offset indent
+bcc -0 text.txt text > text.h
+.Ed
+.\" HISTORY
+.Sh HISTORY
+The
+.Nm
+tool is inspired by
+.Nm xxd
+utility but offers more flexibility over the the generated code.
+.\" SEE ALSO
+.Sh SEE ALSO
+.Xr xxd 1
