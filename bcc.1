@@ -23,9 +23,9 @@
 .\" SYNOPSIS
 .Sh SYNOPSIS
 .Nm bcc
-.Op Fl 0csu
-.Op Fl I Ar tab-indent
-.Op Fl i Ar space-indent
+.Op Fl 0cs
+.Op Fl I Ar num
+.Op Fl i Ar num
 .Ar filename
 .Ar variable
 .\" DESCRIPTION
@@ -60,24 +60,21 @@ Generates a
 .Em const
 array.
 .It Fl s
-Generate a
+Generates a
 .Em static
 array.
-.It Fl u
-Use an
-.Em unsigned
-char rather than
-.Em signed .
-.It Fl I Ar tab-indent
-.Ar tab-indent
-count as leading indents.
-.It Fl i Ar space-indent
-.Ar space-indent
-count as leading indents.
+.It Fl I Ar num
+Use
+.Ar num
+count as leading tab indents.
+.It Fl i Ar num
+Use
+.Ar num
+count as leading space indents.
 .El
 .\" EXAMPLES
 .Sh EXAMPLES
-Create a static, const, unsigned array from an image.
+Create a static, const array from an image.
 .Bd -literal -offset indent
 bcc -scu image.png image > image.h
 .Ed

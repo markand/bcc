@@ -9,7 +9,7 @@ Quick usage
 
 Example: convert a image for embedding.
 
-	bcc -scu mario.png mario > mario.h
+	bcc -sc mario.png mario > mario.h
 
 Now, you can include mario.h file and use `mario` C array, `sizeof (mario)` is
 also possible.

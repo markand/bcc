@@ -31,12 +31,11 @@ static int findent = 1;
 static bool fconst;
 static bool fnull;
 static bool fstatic;
-static bool funsigned;
 
 noreturn static void
 usage(void)
 {
-	fprintf(stderr, "usage: bcc [-0csu] [-I tab-indent] [-i space-indent] input variable\n");
+	fprintf(stderr, "usage: bcc [-0csu] [-I num] [-i num] [-t signedness] input variable\n");
 	exit(1);
 }
 
@@ -79,10 +78,7 @@ indent(void)
 static void
 put(int ch)
 {
-	if (funsigned)
-		printf("0x%02hhx", (unsigned char)ch);
-	else
-		printf("%hhd", (signed char)ch);
+	printf("0x%02hhx", (unsigned char)ch);
 }
 
 static void
@@ -101,8 +97,7 @@ process(const char *input, const char *variable)
 	if (fconst)
 		printf("const ");
 
-	printf(funsigned ? "unsigned " : "signed ");
-	printf("char %s[] = {\n", variable);
+	printf("unsigned char %s[] = {\n", variable);
 
 	for (ch = fgetc(fp); ch != EOF; ) {
 		if (col == 0)
@@ -139,7 +134,7 @@ main(int argc, char **argv)
 {
 	int ch;
 
-	while ((ch = getopt(argc, argv, "0cI:i:su")) != -1) {
+	while ((ch = getopt(argc, argv, "0cI:i:s")) != -1) {
 		switch (ch) {
 		case '0':
 			fnull = true;
@@ -157,9 +152,6 @@ main(int argc, char **argv)
 			break;
 		case 's':
 			fstatic = true;
-			break;
-		case 'u':
-			funsigned = true;
 			break;
 		default:
 			break;
