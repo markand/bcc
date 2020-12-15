@@ -35,7 +35,7 @@ static bool fstatic;
 noreturn static void
 usage(void)
 {
-	fprintf(stderr, "usage: bcc [-0csu] [-I num] [-i num] [-t signedness] input variable\n");
+	fprintf(stderr, "usage: bcc [-0cs] [-I tab-indent] [-i space-indent] input variable\n");
 	exit(1);
 }
 
