@@ -18,7 +18,6 @@
 
 #include <errno.h>
 #include <stdarg.h>
-#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdnoreturn.h>
@@ -27,10 +26,7 @@
 
 static const char *charset = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
 static char findentchar = '\t';
-static int findent = 1;
-static bool fconst;
-static bool fnull;
-static bool fstatic;
+static int findent = 1, fconst, fnull, fstatic;
 
 noreturn static void
 usage(void)
@@ -137,10 +133,10 @@ main(int argc, char **argv)
 	while ((ch = getopt(argc, argv, "0cI:i:s")) != -1) {
 		switch (ch) {
 		case '0':
-			fnull = true;
+			fnull = 1;
 			break;
 		case 'c':
-			fconst = true;
+			fconst = 1;
 			break;
 		case 'I':
 			findentchar = '\t';
@@ -151,7 +147,7 @@ main(int argc, char **argv)
 			findent = atoi(optarg);
 			break;
 		case 's':
-			fstatic = true;
+			fstatic = 1;
 			break;
 		default:
 			break;
