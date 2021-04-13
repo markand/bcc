@@ -1,5 +1,5 @@
 #
-# Makefile -- basic makefile for bcc
+# Makefile -- basic Makefile for bcc
 #
 # Copyright (c) 2020-2021 David Demelier <markand@malikania.fr>
 #
@@ -27,7 +27,7 @@ PREFIX=         /usr/local
 BINDIR=         ${PREFIX}/bin
 MANDIR=         ${PREFIX}/share/man
 
-VERSION=        1.0.0
+VERSION=        2.0.0
 SRCS=           bcc.c
 OBJS=           ${SRCS:.c=.o}
 

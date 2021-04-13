@@ -1,7 +1,7 @@
 bcc CHANGES
 ===========
 
-bcc 2.0.0 --
+bcc 2.0.0 -- 2021-04-13
 -----------------------
 
 - Use `unsigned char` only.
