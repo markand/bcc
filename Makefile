@@ -34,19 +34,13 @@ OBJS=           ${SRCS:.c=.o}
 .SUFFIXES:
 .SUFFIXES: .o .c
 
-all: bcc
-
 .c.o:
 	${CC} ${CFLAGS} -c $< -o $@
 
-bcc: ${OBJS}
-	${CC} -o $@ ${OBJS}${LDFLAGS}
+all: bcc
 
-dist: clean
-	mkdir bcc-${VERSION}
-	cp CHANGES.md INSTALL.md LICENSE.md Makefile README.md bcc.1 bcc.c bcc-${VERSION}
-	tar -cJf bcc-${VERSION}.tar.xz bcc-${VERSION}
-	rm -rf bcc-${VERSION}
+bcc: ${OBJS}
+	${CC} -o $@ ${OBJS} ${LDFLAGS}
 
 install:
 	mkdir -p ${DESTDIR}${BINDIR}
@@ -55,6 +49,6 @@ install:
 	cp bcc.1 ${DESTDIR}${MANDIR}/man1
 
 clean:
-	rm -f bcc ${OBJS} bcc-${VERSION}.tar.xz
+	rm -f bcc ${OBJS}
 
-.PHONY: all clean dist install
+.PHONY: all clean install
