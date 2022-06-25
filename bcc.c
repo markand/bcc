@@ -129,6 +129,11 @@ main(int argc, char **argv)
 {
 	int ch;
 
+#if defined(__OpenBSD__)
+	if (pledge("rpath stdio", NULL) < 0)
+		die("abort: %s\n", strerror(errno));
+#endif
+
 	while ((ch = getopt(argc, argv, "0cI:i:s")) != -1) {
 		switch (ch) {
 		case '0':

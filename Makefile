@@ -20,7 +20,7 @@
 
 # User options.
 CC=             cc
-CFLAGS=         -Wall -Wextra -DNDEBUG -D_XOPEN_SOURCE=700 -O3 -std=c11 -pedantic
+CFLAGS=         -DNDEBUG -O3
 
 # Installation paths.
 PREFIX=         /usr/local
