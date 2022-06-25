@@ -6,9 +6,9 @@ Installation instructions.
 Requirements
 ------------
 
-- C11, a C11 compiler (GCC, Clang),
-- POSIX make, a POSIX make implementation,
-- POSIX getopt, the utility make use of `getopt(3)`.
+- C99, a C99 compiler (GCC, Clang),
+- Standard make,
+- Some POSIX functionalities (getopt).
 
 Basic installation
 ------------------
