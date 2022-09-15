@@ -15,7 +15,7 @@ Basic installation
 
 Quick install.
 
-	$ tar xvzf bcc-x.y.z-tar.xz
+	$ bsdtar -xvf bcc-x.y.z.tar.xz
 	$ cd bcc-x.y.z
 	$ make
 	# sudo make install
