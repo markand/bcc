@@ -21,7 +21,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <unistd.h>
+
+#include "arg.h"
+
+char *argv0;
 
 static const char *charset = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_";
 static char findentchar = '\t';
@@ -125,7 +128,7 @@ process(const char *input, const char *variable)
 }
 
 int
-main(int argc, char **argv)
+main(int argc, char *argv[])
 {
 	int ch;
 
@@ -134,32 +137,28 @@ main(int argc, char **argv)
 		die("abort: %s\n", strerror(errno));
 #endif
 
-	while ((ch = getopt(argc, argv, "0cI:i:s")) != -1) {
-		switch (ch) {
-		case '0':
-			fnull = 1;
-			break;
-		case 'c':
-			fconst = 1;
-			break;
-		case 'I':
-			findentchar = '\t';
-			findent = atoi(optarg);
-			break;
-		case 'i':
-			findentchar = ' ';
-			findent = atoi(optarg);
-			break;
-		case 's':
-			fstatic = 1;
-			break;
-		default:
-			break;
-		}
-	}
-
-	argc -= optind;
-	argv += optind;
+	ARGBEGIN {
+	case '0':
+		fnull = 1;
+		break;
+	case 'c':
+		fconst = 1;
+		break;
+	case 'I':
+		findentchar = '\t';
+		findent = atoi(EARGF(usage()));
+		break;
+	case 'i':
+		findentchar = ' ';
+		findent = atoi(EARGF(usage()));
+		break;
+	case 's':
+		fstatic = 1;
+		break;
+	default:
+		usage();
+		break;
+	} ARGEND
 
 	if (argc < 2)
 		usage();

@@ -5,6 +5,7 @@ bcc 2.1.0 ????-??-??
 --------------------
 
 - Add `pledge` support on OpenBSD.
+- Remove `getopt()` usage for non POSIX support.
 
 bcc 2.0.0 2021-04-13
 --------------------
