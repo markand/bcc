@@ -130,8 +130,6 @@ process(const char *input, const char *variable)
 int
 main(int argc, char *argv[])
 {
-	int ch;
-
 #if defined(__OpenBSD__)
 	if (pledge("rpath stdio", NULL) < 0)
 		die("abort: %s\n", strerror(errno));
