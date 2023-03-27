@@ -1,7 +1,7 @@
 bcc CHANGES
 ===========
 
-bcc 2.1.0 ????-??-??
+bcc 2.1.0 2023-03-27
 --------------------
 
 - Add `pledge` support on OpenBSD.
