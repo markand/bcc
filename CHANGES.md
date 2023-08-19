@@ -1,6 +1,11 @@
 bcc CHANGES
 ===========
 
+bcc 2.2.0 2023-08-19
+--------------------
+
+- Add `-t type` option to change default `unsigned char` data type.
+
 bcc 2.1.0 2023-03-27
 --------------------
 
