@@ -18,36 +18,19 @@
 
 .POSIX:
 
-# User options.
-CC=             cc
-CFLAGS=         -DNDEBUG -O3
-
-# Installation paths.
 PREFIX=         /usr/local
-BINDIR=         ${PREFIX}/bin
-MANDIR=         ${PREFIX}/share/man
-
-SRCS=           bcc.c
-OBJS=           ${SRCS:.c=.o}
-
-.SUFFIXES:
-.SUFFIXES: .o .c
-
-.c.o:
-	${CC} ${CFLAGS} -c $< -o $@
+BINDIR=         $(PREFIX)/bin
+MANDIR=         $(PREFIX)/share/man
 
 all: bcc
 
-bcc: ${OBJS}
-	${CC} -o $@ ${OBJS} ${LDFLAGS}
-
 install:
-	mkdir -p ${DESTDIR}${BINDIR}
-	cp bcc ${DESTDIR}${BINDIR}
-	mkdir -p ${DESTDIR}${MANDIR}/man1
-	cp bcc.1 ${DESTDIR}${MANDIR}/man1
+	mkdir -p $(DESTDIR)$(BINDIR)
+	cp bcc $(DESTDIR)$(BINDIR)
+	mkdir -p $(DESTDIR)$(MANDIR)/man1
+	cp bcc.1 $(DESTDIR)$(MANDIR)/man1
 
 clean:
-	rm -f bcc ${OBJS}
+	rm -f bcc $(OBJS)
 
 .PHONY: all clean install
