@@ -6,7 +6,7 @@ Installation instructions.
 Requirements
 ------------
 
-- C99, a C99 compiler (GCC, Clang),
+- C99 compiler (GCC, Clang),
 - Standard make.
 
 Basic installation
