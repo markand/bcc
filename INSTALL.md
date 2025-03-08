@@ -14,10 +14,8 @@ Basic installation
 
 Quick install.
 
-	$ bsdtar -xf bcc-x.y.z.tar.xz
-	$ cd bcc-x.y.z
 	$ make
-	# sudo make install
+	# make install
 
 Embedding bcc
 -------------
